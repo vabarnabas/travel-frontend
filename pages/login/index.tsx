@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { SyntheticEvent, useState } from "react";
 import { fetchData } from "../../services/request";
 import TokenService from "../../services/token-service";
@@ -9,27 +10,25 @@ export default function Home() {
   const [error, setError] = useState("");
 
   const tokenservice = new TokenService();
+  const router = useRouter();
 
   const onFormSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     setError("");
-    try {
-      const data = await fetchData("POST", {
-        baseUrl: "https://api.travel.barnabee.studio",
-        path: "auth/local/signin",
-        body: JSON.stringify({
-          identifier,
-          password,
-        }),
-      });
-      const token = data?.access_token;
+    const data = await fetchData("POST", {
+      baseUrl: "https://api.travel.barnabee.studio",
+      path: "auth/local/signin",
+      body: JSON.stringify({
+        identifier,
+        password,
+      }),
+    });
+    const token = data?.access_token;
 
-      if (token) {
-        tokenservice.saveToken(token);
-      } else {
-        setError("Something went wrong.");
-      }
-    } catch (error) {
+    if (token) {
+      await tokenservice.saveToken(token);
+      router.push("/");
+    } else {
       setError("Something went wrong.");
     }
   };
