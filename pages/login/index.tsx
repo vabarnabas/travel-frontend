@@ -1,11 +1,14 @@
 import Head from "next/head";
 import { SyntheticEvent, useState } from "react";
-import { fetchData } from "../services/request";
+import { fetchData } from "../../services/request";
+import TokenService from "../../services/token-service";
 
 export default function Home() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const tokenservice = new TokenService();
 
   const onFormSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -21,7 +24,9 @@ export default function Home() {
       });
       const token = data?.access_token;
 
-      if (!token) {
+      if (token) {
+        tokenservice.saveToken(token);
+      } else {
         setError("Something went wrong.");
       }
     } catch (error) {
