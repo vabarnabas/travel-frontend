@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import Layout from "../../../components/layout";
 import { City, Country, ICity, ICountry } from "country-state-city";
@@ -14,42 +14,52 @@ const TripsForm = () => {
   const [countryQuery, setCountryQuery] = useState("");
   const [cityQuery, setCityQuery] = useState("");
 
-  const filteredCountries =
-    countryQuery === ""
-      ? countries
-      : countries.filter((country) =>
-          country.name
-            .toLowerCase()
-            .replace(/\s+/g, "")
-            .includes(countryQuery.toLowerCase().replace(/\s+/g, ""))
-        );
+  const [filteredCountries, setFilteredCountries] = useState<ICountry[]>([]);
+  const [filteredCities, setFilteredCities] = useState<ICity[]>([]);
 
-  const filteredCities = cities
-    ? cityQuery === ""
-      ? cities.filter(
-          (city, idx) =>
-            cities
-              .map((subCity) => {
-                return subCity.name;
-              })
-              .indexOf(city.name) === idx
-        )
-      : cities
-          .filter(
-            (city, idx) =>
-              cities
-                .map((subCity) => {
-                  return subCity.name;
-                })
-                .indexOf(city.name) === idx
-          )
-          .filter((city) =>
-            city.name
+  useEffect(() => {
+    setFilteredCountries(
+      countryQuery === ""
+        ? countries
+        : countries.filter((country) =>
+            country.name
               .toLowerCase()
               .replace(/\s+/g, "")
-              .includes(cityQuery.toLowerCase().replace(/\s+/g, ""))
+              .includes(countryQuery.toLowerCase().replace(/\s+/g, ""))
           )
-    : [];
+    );
+  }, [countryQuery]);
+
+  useEffect(() => {
+    setFilteredCities(
+      cities
+        ? cityQuery === ""
+          ? cities.filter(
+              (city, idx) =>
+                cities
+                  .map((subCity) => {
+                    return subCity.name;
+                  })
+                  .indexOf(city.name) === idx
+            )
+          : cities
+              .filter(
+                (city, idx) =>
+                  cities
+                    .map((subCity) => {
+                      return subCity.name;
+                    })
+                    .indexOf(city.name) === idx
+              )
+              .filter((city) =>
+                city.name
+                  .toLowerCase()
+                  .replace(/\s+/g, "")
+                  .includes(cityQuery.toLowerCase().replace(/\s+/g, ""))
+              )
+        : []
+    );
+  }, [cityQuery]);
 
   const selectCountry = (isoCode: string) => {
     setSelectedCountry(Country.getCountryByCode(isoCode) as ICountry);
@@ -168,7 +178,7 @@ const TripsForm = () => {
                   afterLeave={() => setCityQuery("")}
                 >
                   <Combobox.Options className="absolute mt-1 max-h-40 w-full overflow-auto rounded-md border bg-white py-1 text-sm shadow-lg ring-black focus:outline-none sm:text-sm">
-                    {filteredCountries.length === 0 && countryQuery !== "" ? (
+                    {filteredCities.length === 0 && cityQuery !== "" ? (
                       <div className="relative cursor-default select-none py-1.5 px-4 text-slate-900">
                         Nothing found.
                       </div>
