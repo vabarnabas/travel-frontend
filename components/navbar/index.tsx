@@ -13,7 +13,7 @@ const Navbar = () => {
         onClick={() => router.push("/")}
         className="flex cursor-pointer items-center text-lg font-bold"
       >
-        <MdAirplaneTicket className="text-sky-500" />
+        <MdAirplaneTicket className="mr-1 text-sky-500" />
         Trava
       </p>
       <div className="relative flex items-center">

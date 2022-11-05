@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import Layout from "../../../components/layout";
 import { City, Country, ICity, ICountry } from "country-state-city";
+import { DateRangePicker } from "react-dates";
 
 const TripsForm = () => {
   const countries = Country.getAllCountries();
@@ -73,8 +74,8 @@ const TripsForm = () => {
     <Layout>
       <div className="h-full w-full overflow-y-auto px-6 py-4">
         <form className="" action="">
-          <p className="text-2xl font-semibold">Creating New Trip</p>
-          <div className="mt-4 grid grid-cols-2 gap-x-4">
+          <p className="text-2xl font-semibold">Create a New Trip</p>
+          <div className="mt-4 grid gap-x-4 gap-y-2 sm:grid-cols-2">
             <div className="relative w-full">
               <Combobox
                 value={selectedCountry}
@@ -222,6 +223,20 @@ const TripsForm = () => {
                   </Combobox.Options>
                 </Transition>
               </Combobox>
+            </div>
+            <div className="">
+              <p className="mb-1 pl-1 text-xs font-medium">Start Date</p>
+              <input
+                type="date"
+                className="w-full rounded-md border px-3 py-1.5 text-sm text-black outline-none"
+              />
+            </div>
+            <div className="">
+              <p className="mb-1 pl-1 text-xs font-medium">End Date</p>
+              <input
+                type="date"
+                className="w-full rounded-md border px-3 py-1.5 text-sm text-black outline-none"
+              />
             </div>
           </div>
         </form>
