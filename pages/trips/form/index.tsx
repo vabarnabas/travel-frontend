@@ -63,7 +63,7 @@ const TripsForm = () => {
     <Layout>
       <div className="h-full w-full overflow-y-auto px-6 py-4">
         <form className="" action="">
-          <p className="text-2xl font-semibold">New Trip</p>
+          <p className="text-2xl font-semibold">Creating New Trip</p>
           <div className="mt-4 grid grid-cols-2 gap-x-4">
             <div className="relative w-full">
               <Combobox

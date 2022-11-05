@@ -9,7 +9,10 @@ const Navbar = () => {
 
   return (
     <div className="fixed inset-x-0 top-0 flex h-14 items-center justify-between border-b bg-white px-6">
-      <p className="flex cursor-pointer items-center text-lg font-bold">
+      <p
+        onClick={() => router.push("/")}
+        className="flex cursor-pointer items-center text-lg font-bold"
+      >
         <MdAirplaneTicket className="text-sky-500" />
         Trava
       </p>
