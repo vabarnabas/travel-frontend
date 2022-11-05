@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@headlessui/react@^0.0.0-insiders.74e7b43":
+  version "0.0.0-insiders.74e7b43"
+  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-0.0.0-insiders.74e7b43.tgz#5b5153c47c28fa7b2493f776c19d2da02bbc1bda"
+  integrity sha512-NtBrQXGb4xpA2EiNRvieuFtfGCjfjKT5iz1KK+R07TszwCCwGTbtZi7WliCn8lvA1mFAgXGT0+gJ+18K5cQDpA==
+  dependencies:
+    client-only "^0.0.1"
+
 "@next/env@13.0.1":
   version "13.0.1"
   resolved "https://registry.npmjs.org/@next/env/-/env-13.0.1.tgz"
@@ -227,7 +234,7 @@ chokidar@^3.5.3:
   optionalDependencies:
     fsevents "~2.3.2"
 
-client-only@0.0.1:
+client-only@0.0.1, client-only@^0.0.1:
   version "0.0.1"
   resolved "https://registry.npmjs.org/client-only/-/client-only-0.0.1.tgz"
   integrity sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==
@@ -241,6 +248,11 @@ cookie@^0.4.0:
   version "0.4.2"
   resolved "https://registry.npmjs.org/cookie/-/cookie-0.4.2.tgz"
   integrity sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==
+
+country-state-city@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.npmjs.org/country-state-city/-/country-state-city-3.1.2.tgz"
+  integrity sha512-qpzY7GyzqgJsx5TQUak0ryhbMcn1bLN1mgQc37EWkJMOEbszrAMowjzmisnf8ybhLBnbesZ1LK3KTc7SUX1T1w==
 
 cssesc@^3.0.0:
   version "3.0.0"
@@ -380,7 +392,7 @@ is-number@^7.0.0:
 
 jose@^4.10.4:
   version "4.10.4"
-  resolved "https://registry.yarnpkg.com/jose/-/jose-4.10.4.tgz#5f934b2fcf2995776e8f671f7523c6ac52c138f7"
+  resolved "https://registry.npmjs.org/jose/-/jose-4.10.4.tgz"
   integrity sha512-eBH77Xs9Yc/oTDvukhAEDVMijhekPuNktXJL4tUlB22jqKP1k48v5nmsUmc8feoJPsxB3HsfEt2LbVSoz+1mng==
 
 "js-tokens@^3.0.0 || ^4.0.0":
@@ -581,7 +593,7 @@ react-dom@18.2.0:
 
 react-icons@^4.6.0:
   version "4.6.0"
-  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.6.0.tgz#f83eda179af5d02c047449a20b702c858653d397"
+  resolved "https://registry.npmjs.org/react-icons/-/react-icons-4.6.0.tgz"
   integrity sha512-rR/L9m9340yO8yv1QT1QurxWQvWpbNHqVX0fzMln2HEb9TEIrQRGsqiNFQfiv9/JEUbyHmHPlNTB2LWm2Ttz0g==
 
 react@18.2.0:

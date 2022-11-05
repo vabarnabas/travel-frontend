@@ -16,7 +16,7 @@ export default function Home() {
     e.preventDefault();
     setError("");
     const data = await fetchData("POST", {
-      baseUrl: "https://api.travel.barnabee.studio",
+      baseUrl: process.env.NEXT_PUBLIC_API_URL || "",
       path: "auth/local/signin",
       body: JSON.stringify({
         identifier,
@@ -46,7 +46,7 @@ export default function Home() {
           <input
             value={identifier}
             onChange={(e) => setIdentifier(e.target.value)}
-            type="text"
+            type="email"
             placeholder="Username or e-mail"
             className="w-full rounded-md border px-3 py-2 text-sm outline-none"
           />
