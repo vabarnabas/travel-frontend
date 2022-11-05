@@ -2,12 +2,16 @@ import React from "react";
 import { FaTelegramPlane } from "react-icons/fa";
 import { MdAirplaneTicket } from "react-icons/md";
 import { BiSearch } from "react-icons/bi";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const router = useRouter();
+
   return (
-    <div className="bg-white fixed inset-x-0 top-0 flex h-14 items-center justify-between border-b px-6">
+    <div className="fixed inset-x-0 top-0 flex h-14 items-center justify-between border-b bg-white px-6">
       <p className="flex cursor-pointer items-center text-lg font-bold">
-        <MdAirplaneTicket className="text-sky-500" /> Trava
+        <MdAirplaneTicket className="text-sky-500" />
+        Trava
       </p>
       <div className="relative flex items-center">
         <BiSearch className="absolute left-3" />
@@ -18,7 +22,10 @@ const Navbar = () => {
         />
       </div>
       <div className="flex items-center">
-        <button className="flex items-center rounded-md bg-slate-900 px-3 py-1.5 text-sm text-white outline-none hover:bg-slate-800">
+        <button
+          onClick={() => router.push("/trips/form")}
+          className="flex items-center rounded-md bg-slate-900 px-3 py-1.5 text-sm text-white outline-none hover:bg-slate-800"
+        >
           <FaTelegramPlane className="mr-2" />
           New Trip
         </button>

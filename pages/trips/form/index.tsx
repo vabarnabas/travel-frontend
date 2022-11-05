@@ -14,8 +14,6 @@ const TripsForm = () => {
   const [countryQuery, setCountryQuery] = useState("");
   const [cityQuery, setCityQuery] = useState("");
 
-  console.log(cities);
-
   const filteredCountries =
     countryQuery === ""
       ? countries
@@ -78,13 +76,17 @@ const TripsForm = () => {
                   )
                 }
               >
-                <div className="relative flex items-center">
-                  <p className="absolute left-3">{selectedCountry.flag}</p>
-                  <Combobox.Input
-                    className="w-full rounded-md border py-1.5 pl-8 pr-3 text-sm outline-none"
-                    displayValue={(country: ICountry) => country.name}
-                    onChange={(event) => setCountryQuery(event.target.value)}
-                  />
+                <div className="">
+                  <p className="mb-1 pl-1 text-xs font-medium">Country</p>
+                  <div className="relative flex items-center">
+                    <p className="absolute left-3">{selectedCountry.flag}</p>
+                    <Combobox.Input
+                      placeholder="Search in countries..."
+                      className="w-full rounded-md border py-1.5 pl-8 pr-3 text-sm outline-none"
+                      displayValue={(country: ICountry) => country.name}
+                      onChange={(event) => setCountryQuery(event.target.value)}
+                    />
+                  </div>
                 </div>
                 <Transition
                   as={Fragment}
@@ -149,11 +151,15 @@ const TripsForm = () => {
                   )
                 }
               >
-                <Combobox.Input
-                  className="w-full rounded-md border py-1.5 px-3 text-sm outline-none"
-                  displayValue={(city: ICity) => city.name}
-                  onChange={(event) => setCityQuery(event.target.value)}
-                />
+                <div className="">
+                  <p className="mb-1 pl-1 text-xs font-medium">City</p>
+                  <Combobox.Input
+                    placeholder="Search in cities..."
+                    className="w-full rounded-md border py-1.5 px-3 text-sm outline-none disabled:bg-slate-100"
+                    displayValue={(city: ICity) => city.name}
+                    onChange={(event) => setCityQuery(event.target.value)}
+                  />
+                </div>
                 <Transition
                   as={Fragment}
                   leave="transition ease-in duration-100"
