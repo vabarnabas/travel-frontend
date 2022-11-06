@@ -18,6 +18,9 @@ const TripsForm = () => {
   const [filteredCountries, setFilteredCountries] = useState<ICountry[]>([])
   const [filteredCities, setFilteredCities] = useState<ICity[]>([])
 
+  const [startDate, setStartDate] = useState<string>("")
+  const [endDate, setEndDate] = useState<string>("")
+
   useEffect(() => {
     setFilteredCountries(
       countryQuery === ""
@@ -178,7 +181,7 @@ const TripsForm = () => {
                   leaveTo="opacity-0"
                   afterLeave={() => setCityQuery("")}
                 >
-                  <Combobox.Options className="absolute mt-1 max-h-40 w-full overflow-auto rounded-md border bg-white py-1 text-sm shadow-lg ring-black focus:outline-none sm:text-sm">
+                  <Combobox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md border bg-white py-1 text-sm shadow-lg ring-black focus:outline-none sm:text-sm">
                     {filteredCities.length === 0 && cityQuery !== "" ? (
                       <div className="relative cursor-default select-none py-1.5 px-4 text-slate-900">
                         Nothing found.
@@ -228,14 +231,18 @@ const TripsForm = () => {
               <p className="mb-1 pl-1 text-xs font-medium">Start Date</p>
               <input
                 type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
                 className="w-full rounded-md border px-3 py-1.5 text-sm text-black outline-none"
               />
             </div>
             <div className="">
               <p className="mb-1 pl-1 text-xs font-medium">End Date</p>
               <input
+                disabled={!startDate}
+                min={startDate}
                 type="date"
-                className="w-full rounded-md border px-3 py-1.5 text-sm text-black outline-none"
+                className="w-full rounded-md border px-3 py-1.5 text-sm text-black outline-none disabled:bg-slate-100"
               />
             </div>
           </div>
