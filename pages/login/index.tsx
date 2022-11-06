@@ -1,23 +1,23 @@
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { SyntheticEvent, useState } from "react";
-import Spinner from "../../components/spinner";
-import { fetchData } from "../../services/request";
-import TokenService from "../../services/token-service";
+import Head from "next/head"
+import { useRouter } from "next/router"
+import { SyntheticEvent, useState } from "react"
+import Spinner from "../../components/spinner"
+import { fetchData } from "../../services/request"
+import TokenService from "../../services/token-service"
 
 export default function Home() {
-  const [identifier, setIdentifier] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [fetching, setFetching] = useState(false);
+  const [identifier, setIdentifier] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const [fetching, setFetching] = useState(false)
 
-  const tokenservice = new TokenService();
-  const router = useRouter();
+  const tokenservice = new TokenService()
+  const router = useRouter()
 
   const onFormSubmit = async (e: SyntheticEvent) => {
-    e.preventDefault();
-    setError("");
-    setFetching(true);
+    e.preventDefault()
+    setError("")
+    setFetching(true)
     const data = await fetchData("POST", {
       baseUrl: process.env.NEXT_PUBLIC_API_URL || "",
       path: "auth/local/signin",
@@ -25,17 +25,17 @@ export default function Home() {
         identifier,
         password,
       }),
-    });
-    const token = data?.access_token;
+    })
+    const token = data?.access_token
 
     if (token) {
-      await tokenservice.saveToken(token);
-      router.push("/");
+      await tokenservice.saveToken(token)
+      router.push("/")
     } else {
-      setFetching(false);
-      setError("Something went wrong.");
+      setFetching(false)
+      setError("Something went wrong.")
     }
-  };
+  }
 
   return (
     <div className="text-slate-900">
@@ -56,7 +56,7 @@ export default function Home() {
               onChange={(e) => setIdentifier(e.target.value)}
               type="email"
               placeholder="Username or e-mail"
-              className="w-full rounded-md border px-3 py-2 text-sm outline-none"
+              className="w-full rounded-md border px-3 py-1.5 text-sm outline-none"
             />
             <div className="">
               <input
@@ -64,18 +64,18 @@ export default function Home() {
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="Password"
-                className="w-full rounded-md border px-3 py-2 text-sm text-black outline-none"
+                className="w-full rounded-md border px-3 py-1.5 text-sm text-black outline-none"
               />
               {error ? (
                 <p className="mt-2 text-xs text-slate-500">{error}</p>
               ) : null}
             </div>
-            <button className="w-full rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800">
+            <button className="w-full rounded-md bg-slate-900 px-4 py-1.5 text-sm font-medium text-white hover:bg-slate-800">
               Login
             </button>
           </form>
         )}
       </div>
     </div>
-  );
+  )
 }
