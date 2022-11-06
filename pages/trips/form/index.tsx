@@ -123,7 +123,7 @@ const TripsForm = () => {
         ) : (
           <form className="" action="">
             <p className="text-2xl font-semibold">Create a New Trip</p>
-            <div className="mt-4 grid gap-x-4 gap-y-2 sm:grid-cols-2">
+            <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-2 md:grid-cols-2">
               <div className="relative w-full">
                 <Combobox
                   value={selectedCountry}
@@ -316,7 +316,7 @@ const TripsForm = () => {
               </div>
               <button
                 onClick={(e) => onSubmit(e)}
-                className="col-span-2 w-full rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800"
+                className="mt-2 w-full rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800 md:col-span-2"
               >
                 Submit
               </button>
