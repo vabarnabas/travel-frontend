@@ -1,22 +1,22 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { Combobox, Transition } from "@headlessui/react";
-import Layout from "../../../components/layout";
-import { City, Country, ICity, ICountry } from "country-state-city";
-import { DateRangePicker } from "react-dates";
+import React, { Fragment, useEffect, useState } from "react"
+import { Combobox, Transition } from "@headlessui/react"
+import Layout from "../../../components/layout"
+import { City, Country, ICity, ICountry } from "country-state-city"
+import { DateRangePicker } from "react-dates"
 
 const TripsForm = () => {
-  const countries = Country.getAllCountries();
-  const [selectedCountry, setSelectedCountry] = useState({} as ICountry);
+  const countries = Country.getAllCountries()
+  const [selectedCountry, setSelectedCountry] = useState({} as ICountry)
   const cities = selectedCountry?.isoCode
     ? City.getCitiesOfCountry(selectedCountry.isoCode)
-    : [];
-  const [selectedCity, setSelectedCity] = useState({} as ICity);
+    : []
+  const [selectedCity, setSelectedCity] = useState({} as ICity)
 
-  const [countryQuery, setCountryQuery] = useState("");
-  const [cityQuery, setCityQuery] = useState("");
+  const [countryQuery, setCountryQuery] = useState("")
+  const [cityQuery, setCityQuery] = useState("")
 
-  const [filteredCountries, setFilteredCountries] = useState<ICountry[]>([]);
-  const [filteredCities, setFilteredCities] = useState<ICity[]>([]);
+  const [filteredCountries, setFilteredCountries] = useState<ICountry[]>([])
+  const [filteredCities, setFilteredCities] = useState<ICity[]>([])
 
   useEffect(() => {
     setFilteredCountries(
@@ -28,8 +28,8 @@ const TripsForm = () => {
               .replace(/\s+/g, "")
               .includes(countryQuery.toLowerCase().replace(/\s+/g, ""))
           )
-    );
-  }, [countryQuery]);
+    )
+  }, [countryQuery])
 
   useEffect(() => {
     setFilteredCities(
@@ -39,7 +39,7 @@ const TripsForm = () => {
               (city, idx) =>
                 cities
                   .map((subCity) => {
-                    return subCity.name;
+                    return subCity.name
                   })
                   .indexOf(city.name) === idx
             )
@@ -48,7 +48,7 @@ const TripsForm = () => {
                 (city, idx) =>
                   cities
                     .map((subCity) => {
-                      return subCity.name;
+                      return subCity.name
                     })
                     .indexOf(city.name) === idx
               )
@@ -59,16 +59,16 @@ const TripsForm = () => {
                   .includes(cityQuery.toLowerCase().replace(/\s+/g, ""))
               )
         : []
-    );
-  }, [cityQuery]);
+    )
+  }, [cityQuery])
 
   const selectCountry = (isoCode: string) => {
-    setSelectedCountry(Country.getCountryByCode(isoCode) as ICountry);
-  };
+    setSelectedCountry(Country.getCountryByCode(isoCode) as ICountry)
+  }
 
   const selectCity = (name: string) => {
-    cities && setSelectedCity(cities.filter((city) => city.name == name)[0]);
-  };
+    cities && setSelectedCity(cities.filter((city) => city.name == name)[0])
+  }
 
   return (
     <Layout>
@@ -106,7 +106,7 @@ const TripsForm = () => {
                   leaveTo="opacity-0"
                   afterLeave={() => setCountryQuery("")}
                 >
-                  <Combobox.Options className="absolute mt-1 max-h-40 w-full overflow-auto rounded-md border bg-white py-1 text-sm shadow-lg ring-black focus:outline-none sm:text-sm">
+                  <Combobox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md border bg-white py-1 text-sm shadow-lg ring-black focus:outline-none sm:text-sm">
                     {filteredCountries.length === 0 && countryQuery !== "" ? (
                       <div className="relative cursor-default select-none py-1.5 px-4 text-slate-900">
                         Nothing found.
@@ -242,7 +242,7 @@ const TripsForm = () => {
         </form>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default TripsForm;
+export default TripsForm
